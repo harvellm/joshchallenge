@@ -6,6 +6,7 @@ const moment = require('moment');
 const chalk = require('chalk');
 const argv = require('yargs')
     .usage('Usage: $0 --d1 [valid date] --d2 [valid date] --dtFormat [MM-DD-YYY]')
+    .default('dtFormat', 'MM-DD-YYY')
     .demandOption(['d1','d2'])
     .argv;
 
@@ -20,7 +21,7 @@ if (!d1.isValid()||!d2.isValid()) {
 //d1.day(1) Monday of that week
 //d2.day(8) Monday of next week (this is effectively adding one to the number of actual weeks to make it inclusive)
 
-let weeks = [...Array(moment.duration(d2.day(8).diff(d1.day(1))).asWeeks()).keys()].reduce((final,element) => {console.log(element);let thisDate = d1.clone().add(element,'week');final.push({weekNumber:element, startDate:thisDate.day(1).format(dtFormat), endDate:thisDate.day(7).format(dtFormat)}); return final;}, [] );
+let weeks = [...Array(moment.duration(d2.day(8).diff(d1.day(1))).asWeeks()).keys()].reduce((final,element) => {let thisDate = d1.clone().add(element,'week');final.push({weekNumber:element, startDate:thisDate.day(1).format(dtFormat), endDate:thisDate.day(7).format(dtFormat)}); return final;}, [] );
 
 if(weeks.length>0){
     var table = new Table({

@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "args": ["--d1","12-13-2018", "--d2", "12-13-2019", "--dtFormat", "MM-DD-YYY"],
+            "args": ["--d1","12-13-2018", "--d2", "12-13-2019"],
             "program": "${workspaceFolder}/index.js"
         }
     ]
